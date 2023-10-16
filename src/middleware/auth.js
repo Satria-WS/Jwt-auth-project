@@ -4,7 +4,8 @@ const config = process.env;
 
 const verifyToken = (req, res, next) => {
   const token =
-    req.body.token || req.query.token || req.headers["x-access-token"];
+  req.body.token || req.query.token ||  req.headers["x-access-token"];
+  // console.log(config.TOKEN_KEY)
   
   if (!token) {
     return res.status(403).send("Token required")
@@ -17,7 +18,7 @@ const verifyToken = (req, res, next) => {
     console.log(error)
     return res.status(401).send("invalid Token")
   }
-  return next;
+  return next();
 }
 
 export default verifyToken;
