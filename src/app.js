@@ -4,6 +4,7 @@ import User from "./model/user.js";
 import express, { json } from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import auth from "./middleware/auth.js"
 
 const app = express();
 app.use(express.json());
@@ -93,4 +94,10 @@ app.post("/login", async (req, res) => {
   }
 });
 
+
+//test router auth token
+
+app.post("/welcome", auth, (req, res) => {
+  res.status(200).send("Welcome 🙌 ");
+});
 export default app;
